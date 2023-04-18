@@ -32,14 +32,14 @@ log.info """
 =================================================================
 M A G M A - G E N E _ A N A L Y S I S _ P I P E L I N E
 =================================================================
-Reference GWAS: $params.sumstats
-SNP List: $params.snplist
-Gene List: $params.genelist
-LD Reference: $params.bfile
-N column: $params.ncol
-Gene Sets: $params.genesets 
+Reference GWAS:    $params.sumstats
+SNP List:          $params.snplist
+Gene List:         $params.genelist
+LD Reference:      $params.bfile
+N column:          $params.ncol
+Gene Sets:         $params.genesets 
 Annotation Window: $params.window
-Output Prefix: $params.out
+Output Prefix:     $params.out
 =================================================================
 """
 
