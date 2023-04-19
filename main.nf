@@ -60,7 +60,7 @@ process create_snp_list {
 process annotate_snps {
     label 'low_mem'
 
-    input: tuple path(snplist), 
+    input: tuple path(snplist),
     path(genelist),
     val(annotation_window),
     val(output_prefix),
@@ -82,7 +82,10 @@ process gene_analysis {
     publishDir launchDir
 
     input: tuple path(annotation_output),
-    path(ld_reference_bfile),
+    val(ld_reference_bfile),
+    path(ld_reference_bem),
+    path(ld_reference_bim),
+    path(ld_reference_fam),
     path(sumstats),
     val(n_col_name),
     val(output_prefix),
@@ -129,7 +132,8 @@ workflow {
     | combine(Channel.of(params.out)) \
     | combine(Channel.fromPath(params.magma)) \
     | annotate_snps \
-    | combine(Channel.fromPath(params.bfile)) \
+    | combine(Channel.of(params.bfile)) \
+    | combine(Channel.fromPath('${params.bfile}.*'))
     | combine(Channel.fromPath(params.sumstats)) \
     | combine(Channel.of(params.ncol)) \
     | combine(Channel.of(params.out)) \
