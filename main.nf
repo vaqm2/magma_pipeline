@@ -71,7 +71,7 @@ process annotate_snps {
 
     script:
     """
-    ./magma --annotate $annotation_window \
+    ./magma --annotate window=$annotation_window \
         --snp-loc $snplist \
         --gene-loc $genelist \
         --out $output_prefix
