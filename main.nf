@@ -133,8 +133,7 @@ workflow {
     | combine(Channel.of(params.out)) \
     | combine(Channel.fromPath(params.magma)) \
     | annotate_snps \
-    | combine(Channel.of(params.bfile)) \
-    | combine(Channel.fromPath("${params.bfile}.*"))
+    | combine(Channel.fromFilePairs("${params.bfile}.*{bed, bim, fam}").flatten())
     | combine(Channel.fromPath(params.sumstats)) \
     | combine(Channel.of(params.ncol)) \
     | combine(Channel.of(params.out)) \
