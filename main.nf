@@ -13,6 +13,7 @@ def help_message() {
     OPTIONS:
 
     --window [35,10] <Size of the annotation window around a gene>
+    --snplist <SNP information with columns: SNP CHR BP>
     --genelist [gene.loc] <Gene locations file on the same build as snp-loc file>
     --out <output_prefix>
     --bfile [g1000_eur] PLINK file of genotypes to use as linkage disequilibrium reference
