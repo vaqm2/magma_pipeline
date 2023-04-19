@@ -118,7 +118,7 @@ process gene_set_analysis {
 
     script:
     """
-    ./magma --gene-results $gene_analysis_raw \
+    ./magma --gene-results $gene_analysis_output_raw \
         --set-annot $gene_sets_file \
         --out $out_prefix
     """
