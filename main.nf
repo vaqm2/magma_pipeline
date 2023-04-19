@@ -71,7 +71,7 @@ process annotate_snps {
 
     script:
     """
-    ./magma_exe --annotate $annotation_window \
+    ./magma --annotate $annotation_window \
         --snp-loc $snplist \
         --gene-loc $genelist \
         --output $output_prefix
@@ -97,7 +97,7 @@ process gene_analysis {
 
     script:
     """
-    ./magma_exe --bfile $ld_reference_bfile \
+    ./magma --bfile $ld_reference_bfile \
         --gene-annot $annotation_output \
         --pval $sumstats ncol=$n_col_name \
         --out $output_prefix
@@ -118,7 +118,7 @@ process gene_set_analysis {
 
     script:
     """
-    ./magma_exe --gene-results $gene_analysis_raw \
+    ./magma --gene-results $gene_analysis_raw \
         --set-annot $gene_sets_file \
         --out $output_prefix
     """
