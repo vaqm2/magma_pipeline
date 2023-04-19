@@ -74,7 +74,7 @@ process annotate_snps {
     ./magma --annotate $annotation_window \
         --snp-loc $snplist \
         --gene-loc $genelist \
-        --output $output_prefix
+        --out $output_prefix
     """
 }
 
