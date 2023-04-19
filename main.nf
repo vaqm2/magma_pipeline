@@ -50,7 +50,7 @@ process create_snp_list {
     input: tuple path(sumstats),
     val(output_prefix)
 
-    output: path(${output_prefix}.snps.list)
+    output: path("${output_prefix}.snps.list")
     
     script: """
     echo -e "SNP CHR BP" > ${output_prefix}.snps.list
@@ -67,7 +67,7 @@ process annotate_snps {
     val(output_prefix),
     path(magma_exe)
 
-    output: path(${output_prefix}.genes.annot)
+    output: path("${output_prefix}.genes.annot")
 
     script:
     """
@@ -92,8 +92,8 @@ process gene_analysis {
     val(output_prefix),
     path(magma_exe)
 
-    output: tuple path(${out_prefix}.genes.out), 
-    path(${out_prefix}.genes.raw)
+    output: tuple path("${out_prefix}.genes.out"), 
+    path("${out_prefix}.genes.raw")
 
     script:
     """
@@ -114,7 +114,7 @@ process gene_set_analysis {
     val(output_prefix),
     path(magma_exe)
 
-    output: path(${output_prefix}.sets.genes.out)
+    output: path("${output_prefix}.sets.genes.out")
 
     script:
     """
@@ -134,7 +134,7 @@ workflow {
     | combine(Channel.fromPath(params.magma)) \
     | annotate_snps \
     | combine(Channel.of(params.bfile)) \
-    | combine(Channel.fromPath('${params.bfile}.*'))
+    | combine(Channel.fromPath("${params.bfile}.*"))
     | combine(Channel.fromPath(params.sumstats)) \
     | combine(Channel.of(params.ncol)) \
     | combine(Channel.of(params.out)) \
