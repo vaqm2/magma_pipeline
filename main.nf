@@ -53,7 +53,7 @@ process create_snp_list {
     
     script: """
     echo -e "SNP CHR BP" > ${output_prefix}.snps.list
-    awk '{print $1" "$2" "$3}' $sumstats >> ${output_prefix}.snps.list
+    awk '{print \$1" "\$2" "\$3}' $sumstats >> ${output_prefix}.snps.list
     """
 }
 
