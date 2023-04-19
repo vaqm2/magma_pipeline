@@ -64,17 +64,17 @@ process annotate_snps {
     input: tuple path(snplist),
     path(genelist),
     val(annotation_window),
-    val(output_prefix),
+    val(out_prefix),
     path(magma_exe)
 
-    output: path("${output_prefix}.genes.annot")
+    output: path("${out_prefix}.genes.annot")
 
     script:
     """
     ./magma --annotate window=$annotation_window \
         --snp-loc $snplist \
         --gene-loc $genelist \
-        --out $output_prefix
+        --out $out_prefix
     """
 }
 
@@ -89,7 +89,7 @@ process gene_analysis {
     path(ld_reference_fam),
     path(sumstats),
     val(n_col_name),
-    val(output_prefix),
+    val(out_prefix),
     path(magma_exe)
 
     output: tuple path("${out_prefix}.genes.out"), 
@@ -100,7 +100,7 @@ process gene_analysis {
     ./magma --bfile $ld_reference_bfile \
         --gene-annot $annotation_output \
         --pval $sumstats ncol=$n_col_name \
-        --out $output_prefix
+        --out $out_prefix
     """
 }
 
@@ -111,16 +111,16 @@ process gene_set_analysis {
     input: tuple path(gene_analysis_output),
     path(gene_analysis_output_raw),
     path(gene_sets_file),
-    val(output_prefix),
+    val(out_prefix),
     path(magma_exe)
 
-    output: path("${output_prefix}.sets.genes.out")
+    output: path("${out_prefix}.sets.genes.out")
 
     script:
     """
     ./magma --gene-results $gene_analysis_raw \
         --set-annot $gene_sets_file \
-        --out $output_prefix
+        --out $out_prefix
     """
 }
 
